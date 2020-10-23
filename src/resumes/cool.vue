@@ -47,7 +47,7 @@
           </div>
 
           <div class="section-content section-content--plain">
-            <div class="section-link">
+            <div class="section-link" v-if="person.contact.street">
               <i class="section-link__icon material-icons">business</i>{{ person.contact.street }}
             </div>
 
@@ -57,7 +57,7 @@
               <i class="section-link__icon material-icons">mail</i>{{ person.contact.email }}
             </a>
 
-            <div class="section-link">
+            <div class="section-link" v-if="person.contact.phone">
               <i class="section-link__icon material-icons">phone</i>{{ person.contact.phone }}
             </div>
 
@@ -83,6 +83,13 @@
             </a>
 
             <a
+              v-if="person.contact.bitbucket"
+              class="section-link"
+              :href="contactLinks.bitbucket">
+              <i class="section-link__icon fa fa-bitbucket"></i>{{ person.contact.bitbucket }}
+            </a>
+
+            <a
               v-if="person.contact.medium"
               class="section-link"
               :href="contactLinks.medium">
@@ -90,6 +97,22 @@
             </a>
           </div>
         </div>
+        
+        <div class="section-headline">
+            {{ lang.hobbies }}
+        </div>
+        
+        <div class="hobbies-container">
+          <div class="hobbies-content">
+            <a v-for="(hobby, index) in person.hobbies" :key="index"
+              class="hobby-item"
+              :href="hobby.url">
+
+              <i v-if="hobby.iconClass" :class="hobby.iconClass + ' hobby-item__icon'"></i>
+              <span class="hobby-item__icon-label"> {{ hobby.name }} </span>
+            </a>
+          </div>
+      </div>
       </div>
 
       <div class="content__right">
